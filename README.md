@@ -7,7 +7,7 @@ This project is mostly about coming up with, and numerically solving the followi
 =
 \begin{bmatrix}
 0 & -\frac{k_2 + k_1}{m_1} & 0 & \frac{k_2}{m_1} \\
-1 & -\frac{d_2 d_1}{m_1} & 0 & \frac{d_2}{m_1} \\
+1 & -\frac{d_2 + d_1}{m_1} & 0 & \frac{d_2}{m_1} \\
 0 & \frac{k_2}{m_2} & 0 & -\frac{k_2}{m_2} \\
 0 & \frac{d_2}{m_2} & 1 & -\frac{d_2}{m_2}
 \end{bmatrix}
