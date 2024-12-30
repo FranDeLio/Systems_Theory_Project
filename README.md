@@ -1,4 +1,4 @@
-This project is mostly about coming up with, and numerically solving the following system of ODEs:
+This project is mostly about coming up with, and numerically solving, the following system of ODEs:
 
 ```math
 \begin{bmatrix}
