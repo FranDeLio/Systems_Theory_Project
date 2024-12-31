@@ -1,4 +1,15 @@
-This project is mostly about coming up with, and numerically solving, the following system of ODEs:
+This project is mostly about coming up with, and solving the following system of ODEs:
+
+```math
+\begin{align*}
+& m_2 \ddot{y}_2 + k_2 (y_2 - y_1) + d_2 (\dot{y}_2 - \dot{y}_1) = 0 \\
+& m_1 \ddot{y}_1 + k_2 (y_1 - y_2) + d_2 (\dot{y}_1 - \dot{y}_2) + k_1 (y_1 - u) + d_1 (\dot{y}_1 - \dot{u}) = 0
+\end{align*}
+```
+<br />
+
+We numerically solved the system based on its state-space representation, which is presented below:
+
 
 ```math
 \begin{bmatrix}
