@@ -47,28 +47,18 @@ class LinearControlSystem:
 
         return max_elevation, max_time
 
-    def compute_speeds(self):
-        C = np.array([
-            [0, 1, 0, 0],  # y1'(t)
-            [0, 0, 0, 1]   # y2'(t)
-        ])
-        speeds = []
-        for x, u_val in zip(self.x_values, self.u_values):
-            x = x.reshape(-1, 1)
-            y_dot = C @ (self.A @ x + self.B * u_val)
-            speeds.append(y_dot.flatten())
-        speeds = np.array(speeds)
-        return speeds
-
     def solve(self, initial_conditions: dict, step_size: float = 0.1):
         self.x_values = []
         self.u_values = []
+        self.z_values = []
+
         x = np.array(list(initial_conditions.values())).reshape(-1, 1)
         self.time_steps =  np.linspace(0, self.time, int(self.time / step_size))
 
         for t in self.time_steps:
             self.x_values.append(x.flatten())
             self.u_values.append(self.u(t))
+            self.z_values.append(self.u(self.z(t)))
             dx = self.A @ x + self.B * self.u(self.z(t))
             x = x + dx * step_size
 
@@ -79,7 +69,19 @@ class LinearControlSystem:
         'd1': self.d1
         })
         return df
-
+    
+    def compute_speeds(self):
+        C = np.array([
+            [0, 1, 0, 0],  # y1'(t)
+            [0, 0, 0, 1]   # y2'(t)
+        ])
+        speeds = []
+        for x, z_val in zip(self.x_values, self.z_values):
+            x = x.reshape(-1, 1)
+            y_dot = C @ (self.A @ x + self.B * z_val)
+            speeds.append(y_dot.flatten())
+        speeds = np.array(speeds)
+        return speeds
 
     def plot(self, plot_u=False, deviation_only=False):
         self.x_values = np.array(self.x_values)
