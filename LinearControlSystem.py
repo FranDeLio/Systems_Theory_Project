@@ -92,15 +92,15 @@ class LinearControlSystem:
             y1_height_baseline = self.y1_height_baseline
             y2_height_baseline = self.y2_height_baseline
         
-        plt.plot(self.time_steps, self.x_values[:, 1] + y1_height_baseline, label=r"$y_{1*} + y_1$")
-        plt.plot(self.time_steps, self.x_values[:, 3] + y2_height_baseline, label=r"$y_{2*} + y_2$")
+        plt.plot(self.time_steps, self.x_values[:, 1] + y1_height_baseline, label=r"$y_{1*} + y_1$ (chair)")
+        plt.plot(self.time_steps, self.x_values[:, 3] + y2_height_baseline, label=r"$y_{2*} + y_2$ (body)")
 
         if plot_u==True: 
-            plt.plot(self.time_steps, self.u_values, label="u(t)")
+            plt.plot(self.time_steps, self.u_values, label="u(t) (road surface)")
 
         plt.xlabel("Time (s)")
-        plt.ylabel("State Variables")
-        plt.title("State Variables of the Linear Control System (Euler Method)")
+        plt.ylabel("Position")
+        plt.title("System Simulation via Euler's Method")
         plt.suptitle(f"System Parameters: {self.input_parameters}", y=0.02, fontsize=10)
         plt.legend(loc="upper right", bbox_to_anchor=(1, 1), borderaxespad=0.5)
         plt.grid(True)
