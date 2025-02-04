@@ -33,7 +33,7 @@ class LinearControlSystem:
 
     def compute_eigenvalues(self):
         eigenvalues, eigenvectors = np.linalg.eig(self.A)
-        return print("Eigenvalues:", eigenvalues)
+        return print("Eigenvalues:", np.round(eigenvalues, 2))
 
     def compute_max_elevation(self):
         # Compute maximum elevation difference y2(t) - y1(t)
@@ -94,11 +94,11 @@ class LinearControlSystem:
             y1_height_baseline = self.y1_height_baseline
             y2_height_baseline = self.y2_height_baseline
         
-        plt.plot(self.time_steps, self.x_values[:, 1] + y1_height_baseline, label=r"$y_{1*} + y_1$ (chair)")
-        plt.plot(self.time_steps, self.x_values[:, 3] + y2_height_baseline, label=r"$y_{2*} + y_2$ (body)")
+        plt.plot(self.time_steps, self.x_values[:, 1] + y1_height_baseline, label=r"$y_{1*} + y_1$ (body)")
+        plt.plot(self.time_steps, self.x_values[:, 3] + y2_height_baseline, label=r"$y_{2*} + y_2$ (chair)")
 
         if plot_u==True: 
-            plt.plot(self.time_steps, self.u_values, label="u(t) (road surface)")
+            plt.plot(self.time_steps, self.z_values, label="u(z(t)) (road surface)")
 
         plt.xlabel("Time (s)")
         plt.ylabel("Position")
@@ -108,3 +108,4 @@ class LinearControlSystem:
         plt.grid(True)
 
         plt.show()
+git
