@@ -108,4 +108,3 @@ class LinearControlSystem:
         plt.grid(True)
 
         plt.show()
-git
